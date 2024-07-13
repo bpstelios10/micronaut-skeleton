@@ -30,7 +30,7 @@ ext {
 
 dependencies {
     dependencies {
-//        implementation project(":service")
+        implementation project(":service")
         implementation "net.serenity-bdd:serenity-core:${serenity_version}"
         implementation "net.serenity-bdd:serenity-cucumber:${serenity_version}"
         implementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}"
@@ -39,6 +39,7 @@ dependencies {
         implementation "org.assertj:assertj-core:${assertj_core_version}"
 
         implementation 'io.rest-assured:rest-assured:5.5.0'
+        runtimeOnly "ch.qos.logback:logback-classic"
     }
 }
 
