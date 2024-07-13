@@ -1,0 +1,47 @@
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:4.1.12"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+ext {
+    serenity_version = '4.1.12'
+    junit_platform_launcher_version="1.10.2"
+    cucumber_junit_platform_engine_version="7.16.1"
+    junit_platform_suite_version="1.10.2"
+    junit_jupiter_engine_version="5.10.2"
+    junit_vintage_engine_version="5.10.2"
+    logback_classic_version="1.2.10"
+    assertj_core_version="3.23.1"
+}
+
+dependencies {
+    dependencies {
+//        implementation project(":service")
+        implementation "net.serenity-bdd:serenity-core:${serenity_version}"
+        implementation "net.serenity-bdd:serenity-cucumber:${serenity_version}"
+        implementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}"
+        implementation "org.junit.platform:junit-platform-suite:${junit_platform_suite_version}"
+        implementation "ch.qos.logback:logback-classic:${logback_classic_version}"
+        implementation "org.assertj:assertj-core:${assertj_core_version}"
+
+        implementation 'io.rest-assured:rest-assured:5.5.0'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
