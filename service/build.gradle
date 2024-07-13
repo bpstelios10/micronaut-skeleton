@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.micronaut.gradle:micronaut-gradle-plugin:4.4.0"
+    }
+}
+
+apply plugin: "io.micronaut.application"
+
+repositories {
+    mavenCentral()
+}
+
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+}
+
+dependencies {
+    annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+
+    implementation "io.micronaut:micronaut-http-client"
+    implementation "io.micronaut:micronaut-runtime"
+    implementation "io.micronaut:micronaut-jackson-databind"
+    implementation "io.micronaut.validation:micronaut-validation"
+
+    implementation "javax.annotation:javax.annotation-api"
+    runtimeOnly "ch.qos.logback:logback-classic"
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
