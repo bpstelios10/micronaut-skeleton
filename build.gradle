@@ -4,20 +4,32 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.freefair.gradle:lombok-plugin:8.4'
+        classpath 'io.freefair.gradle:lombok-plugin:8.10.2'
+        classpath "io.micronaut.gradle:micronaut-gradle-plugin:4.4.4"
     }
 }
 
 wrapper {
-    gradleVersion = "8.8"
+    gradleVersion = "8.10.2"
 }
 
 subprojects {
+    repositories {
+        mavenCentral()
+    }
+
     apply plugin: 'java-library'
     apply plugin: 'io.freefair.lombok'
+    apply plugin: "io.micronaut.application"
 
     group = 'framework.samples.micronaut'
     version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    micronaut {
+        version '4.6.3'
+        runtime("netty")
+        testRuntime("junit5")
+    }
 }

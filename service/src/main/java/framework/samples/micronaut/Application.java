@@ -1,15 +1,15 @@
 package framework.samples.micronaut;
 
-import io.micronaut.context.ApplicationContext;
+import io.micronaut.core.annotation.NonNull;
 import io.micronaut.runtime.Micronaut;
 
 public class Application {
 
     public static void main(String[] args) {
-        Micronaut.run(Application.class, args);
+        Micronaut.run(args);
     }
 
-    public static ApplicationContext runApplication() {
-        return Micronaut.run(Application.class);
+    public static @NonNull Micronaut runApplication(String... environments) {
+        return Micronaut.build(new String[] {}).environments(environments);
     }
 }
